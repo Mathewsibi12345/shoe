@@ -15,11 +15,11 @@ class ShoePage extends StatefulWidget {
 }
 
 class _ShoePageState extends State<ShoePage> {
-   List<Shoe> shoesList = [];
+   List<Shoe> shoesList = [];// used for grid view
 
   @override
   void initState() {
-    super.initState();
+    super.initState();//access
     fetchShoes();
   }
 
@@ -224,7 +224,7 @@ class ShoeCard extends StatelessWidget {
     log(currentShoe.imageUrl);
     if (currentShoe.imageUrl.isNotEmpty &&
         currentShoe.imageUrl.startsWith('http')) {
-      return Image.network(
+      return Image.network(//is used to load an image from the specified URL
         currentShoe.imageUrl,
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {

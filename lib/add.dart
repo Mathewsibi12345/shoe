@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_shoeadd/DB.dart';
 import 'package:flutter_application_shoeadd/DBH.dart';
@@ -9,6 +8,7 @@ class InputPage extends StatefulWidget {
   const InputPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _InputPageState createState() => _InputPageState();
 }
 
@@ -46,63 +46,66 @@ class _InputPageState extends State<InputPage> {
       appBar: AppBar(
         title: const Text('D I'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-           
-            TextField(
-              controller: _nameController,
-              decoration: const InputDecoration(border: OutlineInputBorder(),  labelText: 'Name'),
-            ),
-             const SizedBox(height: 5),
-            TextField(
-              controller: _descriptionController,
-              decoration: const InputDecoration(border: OutlineInputBorder(),  labelText: 'Description'),
-            ), SizedBox(height: 5),
-            
-            TextField(
-              controller: _priceController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(border: OutlineInputBorder(),  labelText: 'Price'),
-            ), SizedBox(height: 5),
-           
-            TextField(
-              controller: _imageUrlController,
-              decoration: const InputDecoration(border: OutlineInputBorder(),  labelText: 'Image URL'),
-            ), SizedBox(height: 5),
-            ElevatedButton(
-              onPressed: () {
-                _pickImage();
-              },
-              child: const Text('Select Image'),
-            ),
-            _image != null
-                ? Image.file(
-                    _image!,
-                    height: 50,
-                  )
-                : _imageUrlController.text.isNotEmpty
-                    ? Image.network(
-                        _imageUrlController.text,
-                        height: 50,
-                      )
-                    : Container(),
-            const SizedBox(height: 10),
-           ElevatedButton(
-              onPressed: () {
-                if (_validateInputs()) {
-                  _saveShoe();
-                  Navigator.pop(context, _getShoeDetails());
-                }
-              },
-              child: IconButton(
-                  icon: const Icon(Icons.add_a_photo_rounded, color: Colors.white, size: 25),
-                  onPressed: () {},
-                ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+             
+              TextField(
+                controller: _nameController,
+                decoration: const InputDecoration(border: OutlineInputBorder(),  labelText: 'Name'),
+              ),
+               const SizedBox(height: 5),
+              TextField(
+                controller: _descriptionController,
+                decoration: const InputDecoration(border: OutlineInputBorder(),  labelText: 'Description'),
+              ), SizedBox(height: 5),
               
-            ),
-          ],
+              TextField(
+                controller: _priceController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(border: OutlineInputBorder(),  labelText: 'Price'),
+              ), SizedBox(height: 5),
+             
+              TextField(
+                controller: _imageUrlController,
+                decoration: const InputDecoration(border: OutlineInputBorder(),  labelText: 'Image URL'),
+              ), SizedBox(height: 5),
+              ElevatedButton(
+                onPressed: () {
+                  _pickImage();
+                },
+                child: const Text('Select Image'),
+              ),
+              _image != null
+                  ? Image.file(
+                      _image!,
+                      height: 50,
+                    )
+                  : _imageUrlController.text.isNotEmpty
+                      ? Image.network(
+                          _imageUrlController.text,
+                          height: 50,
+                        )
+                      : Container(),
+              const SizedBox(height: 10),
+             ElevatedButton(
+                onPressed: () {
+                  if (_validateInputs()) {
+                    _saveShoe();
+                    Navigator.pop(context, _getShoeDetails());
+                  }
+                },
+                 child: Text(" Add data") 
+                // IconButton(
+                //     icon: const Icon(Icons.add_a_photo_rounded, color: Colors.white, size: 25),
+                //     onPressed: () {},
+                //   ),
+                
+              ),
+            ],
+          ),
         ),
       ),
     );

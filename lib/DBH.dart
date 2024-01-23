@@ -7,13 +7,13 @@ class DatabaseHelper {
   static DatabaseHelper? _instance;
   static const String tableName = 'shoes';
 
-  DatabaseHelper._privateConstructor();
+  DatabaseHelper._privateConstructor();//Private named constructor
 
   factory DatabaseHelper() {
     if (_instance == null) {
       _instance = DatabaseHelper._privateConstructor();
     }
-    return _instance!;
+    return _instance!;//_instance is being asserted to be non-null at that point in the code
   }
 
   Future<Database> get database async {
@@ -22,11 +22,14 @@ class DatabaseHelper {
     return _database!;
   }
 
-  static Database? _database;
+  static Database? _database; 
+  // The null-aware access operator allows you to call a method or access a property on an object if 
+ // the object is non-null. If the object is null, the entire expression evaluates to null.
 
   Future<Database> initDatabase() async {
     try {
       String path = join(await getDatabasesPath(), 'shoes_database.db');
+      //function is used to retrieve the default path where databases should be stored
       return await openDatabase(path, version: 1,
           onCreate: (db, version) async {
         await db.execute('''
@@ -50,7 +53,7 @@ class DatabaseHelper {
     }
   }
 
-  Future<void> insertShoe(Shoe shoe) async {
+  Future<void> insertShoe(Shoe shoe) async {//insertShoe from add file
     try {
       final Database db = await database;
       log('shoe imageurl is ${shoe.imageUrl}');
@@ -58,6 +61,9 @@ class DatabaseHelper {
         tableName,
         shoe.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace,
+        //This means that if there is a conflict (for example, if the insertion would violate a unique constraint), 
+        //the existing row with the same unique key will be replaced with the new data
+     
       );
     } catch (e) {
       print('Error inserting shoe: $e');
@@ -69,8 +75,10 @@ class DatabaseHelper {
     try {
       final Database db = await database;
       final List<Map<String, dynamic>> maps = await db.query(tableName);
-      return List.generate(maps.length, (i) {
+      return List.generate(maps.length, (i) {//generate a new list
+      //along with the provided index to iterate through the maps
         return Shoe.fromMap(maps[i]);
+        //It extracts values from the map to initialize the properties
       });
     } catch (e) {
       print('Error getting shoes: $e');
