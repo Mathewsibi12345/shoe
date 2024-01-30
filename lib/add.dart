@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_shoeadd/DB.dart';
 import 'package:flutter_application_shoeadd/DBH.dart';
+import 'package:flutter_application_shoeadd/main.dart';
 import 'package:flutter_application_shoeadd/page.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -95,14 +96,9 @@ class _InputPageState extends State<InputPage> {
               ElevatedButton(
   onPressed: () {
     if (_validateInputs()) {
-      _saveShoe();
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ShoePagenexxt(shoe: Shoe.fromMap(_getShoeDetails()), imageUrl: '',),
-        ),
-      );
-    }
+                  _saveShoe();
+                  Navigator.pop(context, _getShoeDetails());
+                }
   },
   child: Text("Add data"),
 ),
