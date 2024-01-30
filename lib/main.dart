@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -74,7 +76,7 @@ class _ShoePageState extends State<ShoePage> {
               onPressed: () async {
                 await Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const InputPage()),
+                  MaterialPageRoute(builder: (context) =>  InputPage()),
                 );
               },
               icon: const Icon(
@@ -146,17 +148,20 @@ class _ShoePageState extends State<ShoePage> {
               itemCount: shoesList.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 1 / 1.8,
+                childAspectRatio: 1 / 1.25,
               ),
               itemBuilder: (context, index) {
-                Shoe currentShoe = shoesList[index];
+                Shoe currentShoe = shoesList[index];//UI input name...
 
                 return InkWell(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ShoePagenexxt(shoe: currentShoe),
+                        builder: (context) => ShoePagenexxt(
+              shoe: currentShoe,
+              imageUrl: currentShoe.imageUrl, // Pass the image URL
+            ),
                       ),
                     );
                   },

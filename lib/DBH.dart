@@ -39,9 +39,7 @@ class DatabaseHelper {
      name TEXT,
      description TEXT,
      price REAL,
-     discount REAL,
      imageUrl TEXT,
-     final_price REAL
    )
 ''');
       }, onConfigure: (db) async {
