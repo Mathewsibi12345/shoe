@@ -132,46 +132,7 @@ class _ShoePage2State extends State<ShoePagenexxt> {
                 SizedBox(height: 5),
               ],
             ),
-              //       CarouselSlider(
-              //         options: CarouselOptions(
-              //           autoPlay: false,
-              //           height: 200,
-              //           onPageChanged: (index, reason) {
-              //             setState(() {
-              //               myCurrentIndex = index;
-              //             });
-              //           },
-              //         ),
-              //         items: myItems,
-              //       )
-              //     ],
-              //   ),
-              // ),
-              // const SizedBox(height: 20),
-              // const Column(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-                  
-              //     Text(
-                     
-              //        'COMMON PROJECTS',
-              //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              //       textAlign: TextAlign.center,
-              //     ),
-              //     SizedBox(height: 5),
-              //     Text(
-              //       'Original Achilles Low Sneakers ',
-              //       style: TextStyle(fontSize: 15),
-              //     ),
-              //     SizedBox(height: 5),
-              //     Text(
-              //       '\$4',
-              //       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              //     ),
-              //     SizedBox(height: 20),
-              //   ],
-              // ),
+       
               Column(
                 children: [
                   Row(
