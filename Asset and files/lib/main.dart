@@ -1,13 +1,10 @@
 // ignore_for_file: sized_box_for_whitespace
-
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_shoeadd/DB.dart';
 import 'package:flutter_application_shoeadd/DBH.dart';
 import 'package:flutter_application_shoeadd/add.dart';
 import 'package:flutter_application_shoeadd/page.dart';
-
 
 class ShoePage extends StatefulWidget {
   const ShoePage({Key? key}) : super(key: key);
@@ -15,16 +12,16 @@ class ShoePage extends StatefulWidget {
   @override
   _ShoePageState createState() => _ShoePageState();
 }
-
+// Declaring the State class for 'ShoePage'
 class _ShoePageState extends State<ShoePage> {
-   List<Shoe> shoesList = [];// used for grid view
+  List<Shoe> shoesList = []; // used for grid view
 
   @override
   void initState() {
-    super.initState();//access
-    fetchShoes();
+    super.initState(); //access
+    fetchShoes();// Fetch shoes data when the widget initializes
   }
-
+// Method to fetch shoe data from the database
   Future<void> fetchShoes() async {
     try {
       DatabaseHelper databaseHelper = DatabaseHelper();
@@ -58,7 +55,8 @@ class _ShoePageState extends State<ShoePage> {
               Flexible(
                 flex: 1,
                 child: IconButton(
-                  icon: const Icon(Icons.menu_rounded, color: Colors.black, size: 25),
+                  icon: const Icon(Icons.menu_rounded,
+                      color: Colors.black, size: 25),
                   onPressed: () {},
                 ),
               ),
@@ -76,7 +74,7 @@ class _ShoePageState extends State<ShoePage> {
               onPressed: () async {
                 await Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) =>  InputPage()),
+                  MaterialPageRoute(builder: (context) => InputPage()),
                 );
               },
               icon: const Icon(
@@ -132,7 +130,6 @@ class _ShoePageState extends State<ShoePage> {
                       SizedBox(
                         width: 3,
                       ),
-                    
                     ],
                   ),
                 ),
@@ -151,17 +148,18 @@ class _ShoePageState extends State<ShoePage> {
                 childAspectRatio: 1 / 1.25,
               ),
               itemBuilder: (context, index) {
-                Shoe currentShoe = shoesList[index];//UI input name...
-
+                Shoe currentShoe = shoesList[index]; //UI input name...
+  //The InkWell class is a rectangular area of a Material widget that responds to touch events
                 return InkWell(
                   onTap: () {
+      // Navigate to a detailed page when a shoe is tapped
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => ShoePagenexxt(
-              shoe: currentShoe,
-              imageUrl: currentShoe.imageUrl, // Pass the image URL
-            ),
+                          shoe: currentShoe,
+                          imageUrl: currentShoe.imageUrl, // Pass the image URL
+                        ),
                       ),
                     );
                   },
@@ -176,7 +174,7 @@ class _ShoePageState extends State<ShoePage> {
         ]));
   }
 }
-
+// Widget class representing a Shoe Card
 class ShoeCard extends StatelessWidget {
   final Shoe currentShoe;
 
@@ -199,7 +197,7 @@ class ShoeCard extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 247, 245, 245),
                 ),
-                child: _buildShoeImage(),
+                child: _buildShoeImage(),// Display the shoe image
               ),
             ),
             const SizedBox(height: 10),
@@ -216,24 +214,25 @@ class ShoeCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 5),
-            Text('Price: ${currentShoe.price}', style: const TextStyle(fontSize: 12)),
+            Text('Price: ${currentShoe.price}',
+                style: const TextStyle(fontSize: 12)),
             const SizedBox(height: 5),
-
           ],
         ),
       )
     ]);
   }
-
+// Method to build the shoe image widget
   Widget _buildShoeImage() {
     log(currentShoe.imageUrl);
     if (currentShoe.imageUrl.isNotEmpty &&
         currentShoe.imageUrl.startsWith('http')) {
-      return Image.network(//is used to load an image from the specified URL
+      return Image.network(
+        //is used to load an image from the specified URL
         currentShoe.imageUrl,
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
-          print('Error loading image: $error');
+          print('Error loading image: $error'); // Handle image loading errors
           return Container(
             color: Colors.grey,
             child: const Center(
@@ -245,7 +244,7 @@ class ShoeCard extends StatelessWidget {
           );
         },
       );
-    } else {
+    } else {// If the image URL is invalid, display a placeholder
       print('Invalid image URL: ${currentShoe.imageUrl}');
 
       return const Placeholder(

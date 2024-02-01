@@ -2,31 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_shoeadd/DB.dart';
 
-
-
 class ShoePagenexxt extends StatefulWidget {
-  final Shoe shoe;
-final String imageUrl;
+  final Shoe shoe;//Shoe object representing the shoe details
+final String imageUrl;// URL of the shoe image
   const ShoePagenexxt({
     Key? key,
     required this.shoe,
-    required this.imageUrl, // Add this line
+    required this.imageUrl, 
   }) : super(key: key);
 
   @override
   _ShoePage2State createState() => _ShoePage2State();
 }
-
-
-// class ShoePagenexxt extends StatefulWidget {
-//   const ShoePagenexxt({Key? key, required Shoe shoe}) : super(key: key);
-
-//   @override
-//   _ShoePage2State createState() => _ShoePage2State();
-// }
-
+// Defining the State class for ShoePagenexxt
 class _ShoePage2State extends State<ShoePagenexxt> {
-  final myItems = [
+  final myItems = [// List of image items for the CarouselSlider
     Image.asset('images/shoe.png', fit: BoxFit.cover),
     Image.asset('images/shoe.png', fit: BoxFit.cover),
     Image.asset('images/shoe.png', fit: BoxFit.cover),
@@ -105,7 +95,7 @@ class _ShoePage2State extends State<ShoePagenexxt> {
       }).toList(),
     ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 20),// Displaying shoe details
              Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -119,14 +109,16 @@ class _ShoePage2State extends State<ShoePagenexxt> {
                 ),
                  SizedBox(height: 5),
                 Text(
-                  widget.shoe.description , //invalid constant value
+                  widget.shoe.description , 
                   // Displaying the shoe description dynamically
                   style: TextStyle(fontSize: 12),
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: 5),
                 Text(
-                  'Price: ${widget.shoe.price}', // Displaying the shoe price dynamically
+                  'Price: ${widget.shoe.price}', 
+                  //is retrieving the name of the shoe from the Shoe object associated with the current widget0
+                  // and this name is displayed using the Text widget with specified styling and text properties
                   style: TextStyle(fontSize: 12),
                 ),
                 SizedBox(height: 5),
