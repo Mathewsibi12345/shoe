@@ -1,15 +1,17 @@
 // ignore_for_file: sized_box_for_whitespace
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_shoeadd/DB.dart';
-import 'package:flutter_application_shoeadd/DBH.dart';
-import 'package:flutter_application_shoeadd/add.dart';
-import 'package:flutter_application_shoeadd/page.dart';
+import 'package:flutter_application_shoeadd/model/DB.dart';
+import 'package:flutter_application_shoeadd/control/DBH.dart';
+import 'package:flutter_application_shoeadd/view/page.dart';
+import 'package:flutter_application_shoeadd/view/add.dart';
+
 
 class ShoePage extends StatefulWidget {
   const ShoePage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ShoePageState createState() => _ShoePageState();
 }
 // Declaring the State class for 'ShoePage'
@@ -201,12 +203,7 @@ class ShoeCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Text(
-              currentShoe.name,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-            ),
+            NewWidget_text(currentShoe: currentShoe),
             const SizedBox(height: 5),
             Text(
               currentShoe.description,
@@ -251,6 +248,25 @@ class ShoeCard extends StatelessWidget {
         color: Colors.grey,
       );
     }
+  }
+}
+
+class NewWidget_text extends StatelessWidget {
+  const NewWidget_text({
+    super.key,
+    required this.currentShoe,
+  });
+
+  final Shoe currentShoe;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      currentShoe.name,
+      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+      textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
+    );
   }
 }
 

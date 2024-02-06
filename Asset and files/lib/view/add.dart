@@ -2,8 +2,12 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_shoeadd/DB.dart';
-import 'package:flutter_application_shoeadd/DBH.dart';
+import 'package:flutter_application_shoeadd/main.dart';
+
+import 'package:flutter_application_shoeadd/model/DB.dart';
+import 'package:flutter_application_shoeadd/control/DBH.dart';
+
+//import 'package:flutter_application_shoeadd/main.dart';
 import 'package:image_picker/image_picker.dart';
 
 class InputPage extends StatefulWidget {
@@ -138,7 +142,12 @@ class _InputPageState extends State<InputPage> {
     Map<String, dynamic> shoeDetails = _getShoeDetails();
     if (shoeDetails.isNotEmpty && _validateInputs()) {
       _saveShoe();
-      Navigator.pop(context, shoeDetails);
+     // Navigator.pop(context, shoeDetails);
+Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => ShoePage()),
+        (route) => false,
+      );
     }
   },
   child: Text("Add data"),
@@ -150,6 +159,23 @@ class _InputPageState extends State<InputPage> {
       ),
     );
   }
+
+//   void Redirct_shoepage() {
+//     return setState(() {
+//        Map<String, dynamic> shoeDetails = _getShoeDetails();
+//     if (shoeDetails.isNotEmpty && _validateInputs()) {
+//       _saveShoe();
+//       //Navigator.pop(context, shoeDetails);
+// Navigator.pushAndRemoveUntil(
+//         context,
+//         MaterialPageRoute(builder: (context) => ShoePage()),
+//         (route) => false,
+//       );
+//       //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ShoePage(),));
+//     }
+//     _submitted = true;
+//   });
+//   }
 // Method to pick an image from the device's gallery
   Future<void> _pickImage() async {
     final picker = ImagePicker();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter_application_shoeadd/DB.dart';
+import 'package:flutter_application_shoeadd/model/DB.dart';
 
 class ShoePagenexxt extends StatefulWidget {
   final Shoe shoe;//Shoe object representing the shoe details
@@ -31,6 +31,9 @@ class _ShoePage2State extends State<ShoePagenexxt> {
 
   @override
   Widget build(BuildContext context) {
+    
+    const text = Text("SIZE & FIT",
+                        style: TextStyle(fontWeight: FontWeight.bold));
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -294,8 +297,7 @@ class _ShoePage2State extends State<ShoePagenexxt> {
               const SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text("SIZE & FIT",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    text,
                     SizedBox(height: 20),
                     Divider(height: 5, thickness: 2),
                     SizedBox(height: 25),

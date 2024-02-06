@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:flutter_application_shoeadd/DB.dart';
+import 'package:flutter_application_shoeadd/model/DB.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
